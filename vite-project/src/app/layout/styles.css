@@ -1,0 +1,14 @@
+.app h1 {
+  color: red;
+}
+
+#header {
+  position: fixed;
+  transition: top 0.5s ease;
+  display: block;
+  top: 0;
+}
+
+.navbar-hide {
+    top: -56px;
+}
