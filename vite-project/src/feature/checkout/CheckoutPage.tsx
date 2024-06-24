@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { Avatar, Box, Button, Paper, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
@@ -12,6 +12,7 @@ import { clearBasket } from "../basket/basketSlice";
 import { LoadingButton } from "@mui/lab";
 import { StripeElementType } from "@stripe/stripe-js";
 import { CardNumberElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { CreditCardOutlined, DoneAllOutlined, LocalShippingOutlined, ShoppingBagOutlined } from "@mui/icons-material";
 
 const steps = ['Shipping address', 'Review your order', 'Payment details'];
 
@@ -27,6 +28,7 @@ export default function CheckoutPage() {
     const { basket } = useAppSelector(state => state.basket);
     const stripe = useStripe();
     const elements = useElements();
+    window.scrollTo(0, 0);
 
     function onCardInputChange(event: any) {
         setCardState({
@@ -130,9 +132,20 @@ export default function CheckoutPage() {
     }
 
     return (
-        <div style={{ paddingTop: '80px' }}>
+        <div style={{ paddingTop: '30px' }}>
             <FormProvider {...methods}>
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main', margin: 'auto' }}>
+                        { !paymentSucceeded ? activeStep < 2 ? activeStep === 0 ? (
+                            <LocalShippingOutlined />
+                        ) : (
+                            <ShoppingBagOutlined />
+                        ) : (
+                            <CreditCardOutlined />
+                        ) : (
+                            <DoneAllOutlined />
+                        )}
+                    </Avatar>
                     <Typography component="h1" variant="h4" align="center">
                         Checkout
                     </Typography>

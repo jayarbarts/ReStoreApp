@@ -17,24 +17,24 @@ import { toast } from 'react-toastify';
 
 export default function SignUp() {
     // const [validationErrors, setValidationErrors] = useState([]);
-    const { register, handleSubmit, setError, formState: { isSubmitting, errors, isValid } } = useForm({
+    const { register, handleSubmit, formState: { isSubmitting, errors, isValid } } = useForm({
         mode: 'onTouched'
     });
     const navigate = useNavigate();
 
-    function handleApiErrors(errors: any) {
-        if (errors) {
-            errors.forEach((error: string) => {
-                if (error.includes('Password')) {
-                    setError('password', { message: error })
-                } else if (error.includes('Email')) {
-                    setError('email', { message: error })
-                } else if (error.includes('Username')) {
-                    setError('username', { message: error })
-                }
-            })
-        }
-    }
+    // function handleApiErrors(errors: any) {
+    //     if (errors) {
+    //         errors.forEach((error: string) => {
+    //             if (error.includes('Password')) {
+    //                 setError('password', { message: error })
+    //             } else if (error.includes('Email')) {
+    //                 setError('email', { message: error })
+    //             } else if (error.includes('Username')) {
+    //                 setError('username', { message: error })
+    //             }
+    //         })
+    //     }
+    // }
 
     return (
         <div style={{ paddingTop: '80px' }}>

@@ -1,19 +1,16 @@
-import { Avatar, Box, Button, ButtonGroup, Container, Grid, Paper, TextField, TextareaAutosize, Typography } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
-import { decrement, increment } from "./counterSlice";
+import { Avatar, Box, Container, Grid, Paper, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { EmailOutlined } from "@mui/icons-material";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
-import { signInUser } from "../account/accountSlice";
 import { toast } from "react-toastify";
 
 export default function ContactPage() {
     // const dispatch = useAppDispatch();
     // const {data, title} = useAppSelector(state => state.counter);
-    const navigate = useNavigate();
-    const location = useLocation();
-    const dispatch = useAppDispatch();
+    // const navigate = useNavigate();
+    // const location = useLocation();
+    // const dispatch = useAppDispatch();
     const { register, handleSubmit, formState: { isSubmitting, errors, isValid } } = useForm({
         mode: 'onTouched'
     });

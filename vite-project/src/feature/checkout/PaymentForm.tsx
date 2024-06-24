@@ -31,8 +31,9 @@ export default function PaymentForm({cardState, onCardInputChange}: Props) {
             onChange={onCardInputChange}
             error={!!cardState.elementError.cardNumber}
             helperText={cardState.elementError.cardNumber}
-            id="cardNumber"
-            label="Card number"
+            id="cardNumber payment"
+            label="Card number (Sample valid #: 4242424242424242)"
+            sx={{color:"black"}}
             fullWidth
             autoComplete="cc-number"
             variant="outlined"

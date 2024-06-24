@@ -6,6 +6,7 @@ import { currencyFormat } from "../../app/util/util";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { addBasketItemAsync } from "../basket/basketSlice";
 import NotFound from "../../app/errors/NotFound";
+import { toast } from "react-toastify";
 
 interface Props {
     product: Product;
@@ -63,7 +64,10 @@ export default function ProductCard({product}: Props) {
         <CardActions>
           <LoadingButton 
             loading={status==='pendingAddItem' + product.id} 
-            onClick={() => dispatch(addBasketItemAsync({productId: product.id}))} 
+            onClick={() => {
+              dispatch(addBasketItemAsync({productId: product.id}))
+              .then(() => toast.success("You have successfully added an item to cart."));
+            }} 
             size="small">Add to cart</LoadingButton>
           <Button size="small" component={Link} to={`/catalog/${product.id}`}>View</Button>
         </CardActions>

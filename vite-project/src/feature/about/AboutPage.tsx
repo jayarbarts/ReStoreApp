@@ -1,12 +1,5 @@
-import { Alert, AlertTitle, Box, Button, ButtonGroup, Container, List, ListItem, ListItemText, MobileStepper, Paper, Typography, useTheme } from "@mui/material";
-import agent from "../../app/api/agent";
-import Slider from "react-slick";
-import { useState } from "react";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+import { Box, Container, Paper, Typography } from "@mui/material";
+import Slider from 'react-slick';
 
 const images = [
     {
@@ -57,6 +50,13 @@ const images = [
 ];
 
 export default function AboutPage() {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
     // const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
     // function getValidationError() {
@@ -64,48 +64,45 @@ export default function AboutPage() {
     //         .then(() => console.log('should not see this'))
     //         .catch(error => setValidationErrors(error))
     // }
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = useState(0);
-    const maxSteps = images.length;
+    // const theme = useTheme();
+    // const [activeStep, setActiveStep] = useState(0);
+    // const maxSteps = images.length;
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
+    // const handleNext = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // };
 
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    // const handleBack = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    // };
 
-    const handleStepChange = (step: number) => {
-        setActiveStep(step);
-    };
+    // const handleStepChange = (step: number) => {
+    //     setActiveStep(step);
+    // };
     return (
         <div style={{ paddingTop: '80px' }}>
             <Container>
                 <Typography gutterBottom variant="h3">About Bini</Typography>
                 <Box sx={{ maxWidth: 400, flexGrow: 1, margin: 'auto' }}>
-                    <Paper
-                        square
-                        elevation={0}
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            height: 50,
-                            pl: 2,
-                            bgcolor: 'background.default',
-                        }}
-                    >
-                        <Typography style={{ margin: 'auto' }} variant="h5">{images[activeStep].label}</Typography>
-                    </Paper>
-                    <AutoPlaySwipeableViews
-                        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                        index={activeStep}
-                        onChangeIndex={handleStepChange}
-                        enableMouseEvents
-                    >
-                        {images.map((step, index) => (
-                            <div key={step.label}>
-                                {Math.abs(activeStep - index) <= 8 ? (
+                    <Slider {...settings}>
+                        {images.map((step) => (
+                            <>
+                                <Paper
+                                    square
+                                    elevation={0}
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        height: 50,
+                                        pl: 2,
+                                        bgcolor: 'background.default',
+                                        borderRadius: 2,
+                                        boxShadow: 2
+                                    }}
+                                >
+                                    <Typography style={{ margin: 'auto' }} variant="h5">{step.label}</Typography>
+                                </Paper>
+                                <div key={step.label}>
                                     <Box
                                         component="img"
                                         sx={{
@@ -113,45 +110,19 @@ export default function AboutPage() {
                                             display: 'block',
                                             overflow: 'hidden',
                                             width: '85%',
-                                            margin: 'auto'
+                                            margin: 'auto',
+                                            boxShadow: 2
                                         }}
                                         src={step.imgPath}
                                         alt={step.label}
                                     />
-                                ) : null}
-                            </div>
+                                </div>
+                            </>
                         ))}
-                    </AutoPlaySwipeableViews>
-                    <MobileStepper
-                        steps={maxSteps}
-                        position="static"
-                        activeStep={activeStep}
-                        nextButton={
-                            <Button
-                                size="small"
-                                onClick={handleNext}
-                                disabled={activeStep === maxSteps - 1}
-                            >
-                                Next
-                                {theme.direction === 'rtl' ? (
-                                    <KeyboardArrowLeft />
-                                ) : (
-                                    <KeyboardArrowRight />
-                                )}
-                            </Button>
-                        }
-                        backButton={
-                            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                                {theme.direction === 'rtl' ? (
-                                    <KeyboardArrowRight />
-                                ) : (
-                                    <KeyboardArrowLeft />
-                                )}
-                                Back
-                            </Button>
-                        }
-                    />
+                    </Slider>
                 </Box>
+                <br></br>
+                <br></br>
                 <p>Filipino pop phenomenon BINI features 8 multi-talented members, Aiah, Colet, Maloi, Gwen, Stacey, Mikha, Jhoanna, and Sheena. The girls have quickly become the biggest female Filipino artist in history, and second biggest artist overall in the Philippines, holding both the #1 & #2 spots on the top Filipino music charts simultaneously with the hits “Salamin, Salamin” and “Pantropiko.”</p>
                 <p>BINI's sound is shaped by homegrown artists and global sensations alike. On the heels of their unprecedented growth in socials and in streaming listenership (30M +), the girls recently sold out their “BINIverse” tour in record-breaking time, and have been heralded as one of Teen Vogue's 2024 Girl Groups to watch!</p>
                 <br></br>

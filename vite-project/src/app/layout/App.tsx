@@ -20,7 +20,7 @@ import ScrollToTop from '../router/ScrollToTop';
 // ]
 window.onscroll = function () {
   const currentScrollPos = window.scrollY;
-  if (currentScrollPos <= 300) {
+  if (currentScrollPos <= 250) {
     document.getElementById("header")!.style.top = "0";
   } else {
     document.getElementById("header")!.style.top = "-100px";

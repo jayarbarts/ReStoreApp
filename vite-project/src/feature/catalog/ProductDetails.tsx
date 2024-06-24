@@ -9,6 +9,7 @@ import { LoadingButton } from "@mui/lab";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { addBasketItemAsync, removeBasketItemAsync } from "../basket/basketSlice";
 import { fetchProductAsync, productSelector } from "./productSlice";
+import { toast } from "react-toastify";
 
 export default function ProductDetails() {
     // const {basket, setBasket, removeItem} = useStoreContext();
@@ -43,14 +44,16 @@ export default function ProductDetails() {
         // setSubmitting(true);
         if (!item || quantity > item.quantity) {
             const updatedQuantity = item ? quantity - item.quantity : quantity;
-            dispatch(addBasketItemAsync({productId: product?.id!, quantity: updatedQuantity}));
+            dispatch(addBasketItemAsync({productId: product?.id!, quantity: updatedQuantity}))
+              .then(() => toast.success("You have successfully added an item to cart."));
             // agent.Basket.addItem(product?.id!, updatedQuantity)
             //     .then(basket => dispatch(setBasket(basket)))
             //     .catch(error => console.log(error))
             //     .finally(() => setSubmitting(false))
         } else {
             const updatedQuantity = item.quantity - quantity;
-            dispatch(removeBasketItemAsync({productId: product?.id!, quantity: updatedQuantity}));
+            dispatch(removeBasketItemAsync({productId: product?.id!, quantity: updatedQuantity}))
+            .then(() => toast.success("You have successfully updated your cart."));
             // agent.Basket.removeItem(product?.id!, updatedQuantity)
             //     .then(() => dispatch(removeItem({productId: product?.id!, quantity: updatedQuantity})))
             //     .catch(error => console.log(error))

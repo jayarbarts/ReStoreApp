@@ -12,3 +12,8 @@
 .navbar-hide {
     top: -56px;
 }
+
+body {
+  background-image: url("/images/bini_hero6.webp");
+  background-blend-mode:soft-light;
+}

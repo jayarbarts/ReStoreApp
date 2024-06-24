@@ -1,12 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import Slider from "react-slick";
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
-import FooterPage from "../../app/layout/Footer";
-import AboutPage from "../about/AboutPage";
-import ContactPage from "../contact/ContactPage";
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+import Slider from 'react-slick';
 
 export default function HomePage() {
     const settings = {
@@ -18,7 +11,7 @@ export default function HomePage() {
     };
     return (
         <div style={{paddingTop:'63px'}}>
-            <AutoPlaySwipeableViews {...settings}>
+            <Slider {...settings}>
                 <div>
                     <img src="/images/hero1.jpg" alt="hero" style={{display: 'block', width: '100%', maxHeight: 500}} />
                 </div>
@@ -28,7 +21,7 @@ export default function HomePage() {
                 <div>
                     <img src="/images/hero5.jpg" alt="hero" style={{display: 'block', width: '100%', maxHeight: 500}} />
                 </div>
-            </AutoPlaySwipeableViews>
+            </Slider>
 
             <Box display='flex' justifyContent='center'sx={{p:4}}>
                 <Typography variant="h2">
