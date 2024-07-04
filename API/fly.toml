@@ -1,0 +1,25 @@
+# fly.toml app configuration file generated for bini-merch-app on 2024-06-24T22:21:14+08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'bini-merch-app'
+primary_region = 'sin'
+
+[build]
+  image = 'fcbartolojr26/restore:latest'
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+  StripeSettings__PublishableKey="pk_test_51O5062B8X1XvrI2hnPaFOc4AJ8xYJByRIt1MMjUPCbruyRubYTJWp6SWFTMWit2iG6QQzuEAdTc60VGs95mJm4fw00CCUFhRLO"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
